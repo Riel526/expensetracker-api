@@ -45,6 +45,17 @@ app.get("/expenses", async (req, res) => {
     res.json(expenses);
 });
 
+// API to fetch a single expense item based on id
+app.get("/expenses/:id", async(req, res) => {
+    const expense = await Expense.findByPk(req.params.id);
+
+    if (expense) {
+        res.json(expense);
+    } else {
+        res.status(404).json({ message: "not found" });
+    }
+})
+
 // API to create an expense item
 // { name: "Food", amount: 300.00 }
 app.post("/expenses", async (req, res) => {
