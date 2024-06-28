@@ -9,6 +9,20 @@ const sequelize = new Sequelize({
   storage: './database.sqlite3'
 })
 
+// define models
+class Expense extends Model {}
+
+Expense.init({
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  amount: {
+    type: DataTypes.DECIMAL,
+    allowNull: false,
+  }
+}, { sequelize, modelName: 'expense' })
+
 sequelize.sync();
 
 // Configuration
